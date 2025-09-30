@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Szoba foglalás</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/aside.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-khIpoy0tX9M61xFNtuYrOBdM0bymud0/uvjbj94Dbnw/5D/DBExhcQ8nIS5k5S5P5UXn47+JZ8xwZzD4egE4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap2.css">
+  <link rel="stylesheet" href="/vendors/linericon/style.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+  <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+  <!-- main css -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+<header>
+  <div class="logo">
+    <a href="/"><h1>repjegyek.store</h1></a>
+  </div>
+  <nav class="unique-nav-bar">
+    <ul>
+      <li><a href="/">Kezdőoldal</a></li>
+      <li><a href="/repjegy">Repülőjegyek</a></li>
+      <li><a href="/szalloda">Szállások</a></li>
+      <li><a href="/biztositas">Biztosítások</a></li>
+      <li><a href="/menetrend">Menetrendek</a></li>
+      <li><a href="/" hidden="hidden">Kijelentkezés</a></li>
+      <li><a class="login-icon" href="/login">
+        <i class="fa-solid fa-user"></i>
+      </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section class="banner_area">
+    <div class="booking_table d_flex align-items-center">
+      <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+      <div class="container">
+        <div class="banner_content text-center">
+          <h6>Távol a monoton élettől</h6>
+          <h2>Pihentesd az elméd</h2>
+          <h6>A lefoglalni kívánt szállás</h6>
+        </div>
+      </div>
+    </div>
+    <div class="hotel_booking_area position">
+      <table class="table table-hover" id="jaratok-table">
+        <thead id="jaratok-thead">
+        <tr>
+          <th>Szálloda azonosító</th>
+          <th>Név</th>
+          <th>Város</th>
+          <th>Cím</th>
+          <th>szoba férőhelyek száma</th>
+          <th>ár</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="szoba : ${szalloda}">
+          <td th:text="${szoba.szalloda_id}"></td>
+          <td th:text="${szoba.nev}"></td>
+          <td th:text="${szoba.varos}"></td>
+          <td th:text="${szoba.cim}"></td>
+          <td th:text="${szoba.szoba_ferohelyek_szama}"></td>
+          <td th:text="${szoba.ar}"></td>
+        </tr>
+        </tbody>
+      </table>
+      <form method="post" th:action="@{/foglal_szallas}">
+        <input name="szid" type="number" hidden  th:value="${szid}">
+      <div class="container">
+        <div class="hotel_booking_table">
+          <div class="col-md-9">
+            <div class="boking_table">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="book_tabel_item">
+                    <div class="form-group">
+                      <div class='input-group date' id='datetimepicker11'>
+                        <input type='date' class="form-control" placeholder="Érkezési dátum" name="foglalas_kezdete"/>
+                        <span class="input-group-addon">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class='input-group date' id='datetimepicker1'>
+                        <input type='date' class="form-control" placeholder="Tartózkodási dátum" name="foglalas_vege"/>
+                        <span class="input-group-addon">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="book_tabel_item">
+                    <div class="input-group ppl-number">
+                      <input type="number" name="fo_felnott" placeholder="Felnőttek száma">
+                    </div>
+                    <div class="input-group ppl-number">
+                      <input type="number" name="fo_gyerek" placeholder="Gyermekek száma">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="book_tabel_item">
+                    <button class="book_now_btn button_hover" type="submit">
+                      Foglalás
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </section>
+</main>
+<aside>
+  <div class="contact">
+    <h3>Kapcsolat</h3>
+    <ul>
+      <li><i class="fas fa-phone"></i> +1-123-456-7890</li>
+      <li><i class="fas fa-envelope"></i> info@jegyfoglalas.hu</li>
+      <li><i class="fas fa-map-marker-alt"></i>1055 Szent Gellért tér 82., Budapest</li>
+    </ul>
+  </div>
+  <div class="payment-options">
+    <h3>Fizetési lehetőségek</h3>
+    <img class="mastercard" src="/pic/pay/mastercard.svg" alt="Mastercard">
+    <img class="visa" src="/pic/pay/visa.svg" alt="Visa">
+    <img class="paypal" src="/pic/pay/paypal.svg" alt="PayPal">
+  </div>
+  <div class="social">
+    <h3>Kövessen minket!</h3>
+    <ul>
+      <li>
+        <a href="#" class="facebook">
+          <i class="fa-brands fa-facebook fa-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="twitter">
+          <i class="fa-brands fa-twitter fa-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="linkdIn">
+          <i class="fa-brands fa-linkedin fa-2xl"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</aside>
+<footer>
+  <nav>
+    <ul>
+      <li><a href="#">Felhasználási feltételek</a></li>
+      <li><a href="#">Adatkezelési tájékoztató</a></li>
+      <li><a href="#">Rólunk</a></li>
+    </ul>
+  </nav>
+  <p>&copy; 2023 repjegyek.store | Minden jog fenntartva.</p>
+</footer>
+
+<script src="https://kit.fontawesome.com/02cb21146d.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+

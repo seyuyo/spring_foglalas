@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Biztosítás</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- NAVBAR CSS -->
+    <link rel="stylesheet" href="/css/navbar.css">
+    <!-- FOOTER CSS -->
+    <link rel="stylesheet" href="/css/footer.css">
+    <!-- ASIDE CSS -->
+    <link rel="stylesheet" href="/css/aside.css">
+    <!-- MAIN CSS -->
+    <link href="/css/biztositas.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-khIpoy0tX9M61xFNtuYrOBdM0bymud0/uvjbj94Dbnw/5D/DBExhcQ8nIS5k5S5P5UXn47+JZ8xwZzD4egE4w=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600;700&display=swap"
+          rel="stylesheet"/>
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet"/>
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+<header>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex
+    align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <div class="logo">
+        <a href="/"><h1>repjegyek.store</h1></a>
+    </div>
+    <nav class="unique-nav-bar">
+        <ul>
+            <li><a href="/">Kezdőoldal</a></li>
+            <li><a href="/repjegy">Repülőjegyek</a></li>
+            <li><a href="/szalloda">Szállások</a></li>
+            <li><a href="/biztositas">Biztosítások</a></li>
+            <li><a href="/menetrend">Menetrendek</a></li>
+            <li th:if="${Felhasznalo != null}">
+                <a href="/logout">Kijelentkezés</a>
+            </li>
+            <li><a class="login-icon" href="/login">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto" style="max-width: 500px">
+                <h1 class="display-6 mb-5">
+                    Professzionális biztosítási szolgáltatásokat nyújtunk
+                </h1>
+            </div>
+            <div class="insurance-cards row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded h-100 p-5">
+                        <div class="d-flex align-items-center ms-n5 mb-4">
+                            <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
+                                <img alt="" class="img-fluid" src="/img/icon/icon-10-light.png"/>
+                            </div>
+                            <h4 class="mb-0">Utasbiztosítás</h4>
+                        </div>
+                        <p class="mb-4">
+                            Az egyszerű utasbiztosítás az utazás során felmerülő legfontosabb kockázatokat fedezi,
+                            mint például az orvosi ellátás költségeit, a poggyász elvesztését vagy károsodását,
+                            valamint a repülőjegy vagy az utazás egyéb költségeinek megtérítését.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded h-100 p-5">
+                        <div class="d-flex align-items-center ms-n5 mb-4">
+                            <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
+                                <img alt="" class="img-fluid" src="/img/icon/icon-01-light.png"/>
+                            </div>
+                            <h4 class="mb-0">Balesetbiztosítás</h4>
+                        </div>
+                        <p class="mb-4">
+                            A balesetbiztosítás különösen fontos, ha extrém sportokat űzünk vagy veszélyes
+                            körülmények között utazunk. Az ilyen biztosítások általában baleset, rosszullét vagy
+                            halál esetén fizetnek kártérítést.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded h-100 p-5">
+                        <div class="d-flex align-items-center ms-n5 mb-4">
+                            <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
+                                <img alt="" class="img-fluid" src="/img/icon/icon-06-light.png"/>
+                            </div>
+                            <h4 class="mb-0">Értékbiztosítás</h4>
+                        </div>
+                        <p class="mb-4">
+                            Az értékbiztosítás lehetőséget nyújt arra, hogy biztosítsd a repülőjegyedet a
+                            kockázatok ellen, amelyek befolyásolhatják az utazásodat. Ha például balesetet szenvedsz,
+                            vagy egészségügyi problémáid vannak, amelyek miatt nem tudsz utazni, az értékbiztosítás
+                            segítségedre lehet az utazási költségeid megtérítésében.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded h-100 p-5">
+                        <div class="d-flex align-items-center ms-n5 mb-4">
+                            <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
+                                <img alt="" class="img-fluid" src="/img/icon/icon-02-light.png"/>
+                            </div>
+                            <h4 class="mb-0">Világvezető biztosító vállalatok</h4>
+                        </div>
+                        <p class="mb-4">
+                            A világvezető biztosító vállalatok olyan cégek, amelyek a világ különböző részein
+                            nyújtanak széles körű biztosítási szolgáltatásokat. Az ilyen vállalatok általában
+                            magas szintű ügyfélcentrikus szemléletet követnek, és céljuk, hogy ügyfeleiknek
+                            biztonságot és megnyugvást nyújtsanak életük különböző területein.
+                        </p>
+                        <button type="button" id="bizt-vallalatok-button" class="btn btn-primary">Olvass tovább</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded h-100 p-5">
+                        <div class="d-flex align-items-center ms-n5 mb-4">
+                            <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
+                                <img alt="" class="img-fluid" src="/img/icon/icon-04-light.png"/>
+                            </div>
+                            <h4 class="mb-0">Biztosítási csomagok</h4>
+                        </div>
+                        <p class="mb-4">
+                            Az utazások során rengeteg előre nem látható helyzet adódhat, amelyek kellemetlenségekkel
+                            járhatnak, mint például a poggyász elvesztése, vagy az utazás lemondása betegség miatt.
+                            Ezen esetekben az utasbiztosítás csomagok biztosítják az utazóknak a szükséges védelmet és
+                            nyugalmat. A csomagok általában különböző szintű fedezetet biztosítanak, lehetőséget adnak
+                            az egészségügyi ellátásra, a baleseti és a felelősségbiztosításra. A megfelelő csomag
+                            kiválasztásával az utazók a lehető legjobb védelmet élvezhetik, és biztosak lehetnek abban,
+                            hogy számíthatnak a biztosító vállalat segítségére bármilyen váratlan esemény esetén.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded h-100 p-5">
+                        <div class="d-flex align-items-center ms-n5 mb-4">
+                            <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
+                                <img alt="" class="img-fluid" src="/img/icon/icon-06-light.png"/>
+                            </div>
+                            <h4 class="mb-0">Védje családját a legnépszerűbb biztosítóinkkal</h4>
+                        </div>
+                        <p class="mb-4">
+                            Biztosítások segítségével számos kockázatot kivédhetünk, így megóvhatjuk családunkat a
+                            váratlan pénzügyi terhektől. Az életben mindenre lehet számítani, és bár nehéz elképzelni a
+                            rossz dolgokat, nem árt felkészülni rájuk. A biztosítási csomagokkal nem csak a fizikai
+                            károkat, hanem a személyi sérüléseket, betegségeket, vagy akár a halálesetet is lefedhetjük.
+                            Ezzel nyugodt lelkiismerettel élhetünk, hogy családunk megkapja a szükséges anyagi
+                            támogatást, ha bármilyen váratlan esemény történne. A biztosítások lehetővé teszik, hogy
+                            megelőzzük a pénzügyi nehézségeket, és védelmet nyújtsunk az ilyen helyzetekben. Válasszon
+                            biztosítási csomagjaink közül, és védekezzen a váratlan kockázatok ellen!
+                        </p>
+                        <button id="pop-insurance-button" class="btn btn-primary">Olvass tovább</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pop-insurance-container" class="popular-insurance">
+        <h2 class="text-center mb-5">Legnépszerűbb biztosítók</h2>
+        <table id="pop-insurance-table" class="table table-light">
+            <thead>
+            <tr class="bg-primary">
+                <th class="bg-primary">Biztositó Neve</th>
+                <th class="bg-primary">Biztosítások fajtái</th>
+                <th class="bg-primary">Ár</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="biz : ${Nepszeru_Biztositok}">
+                <td class="bg-dark ins-name" th:text="${biz.biztosito_neve}"></td>
+                <td th:text="${biz.fajtak}"></td>
+                <td th:text="${biz.ar}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div id="table-container" class="table-container">
+        <table id="bizt-table" class="table table-light" >
+            <thead>
+            <tr>
+                <th class="bg-primary">Név</th>
+                <th class="bg-primary">Információ</th>
+                <th class="bg-primary"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="biztosito : ${Biztositok} ">
+                    <td class="bg-dark ins-name" th:text="${biztosito.nev}"></td>
+                    <td th:text="${biztosito.leiras}"></td>
+                    <td>
+                        <form th:action="@{/bovebben/{bid}(bid=${biztosito.biztosito_kod})}" method="POST">
+                            <button class="btn btn-primary" type="submit">Bővebben</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+</main>
+<aside class="bg-light" style="border-radius: 20px">
+    <div class="contact">
+        <h3>Kapcsolat</h3>
+        <ul>
+            <li><i class="fas fa-phone"></i> +1-123-456-7890</li>
+            <li><i class="fas fa-envelope"></i> info@jegyfoglalas.hu</li>
+            <li><i class="fas fa-map-marker-alt"></i>1055 Szent Gellért tér 82., Budapest</li>
+        </ul>
+    </div>
+    <div class="payment-options">
+        <h3>Fizetési lehetőségek</h3>
+        <img alt="Mastercard" class="mastercard" src="/pic/pay/mastercard.svg">
+        <img alt="Visa" class="visa" src="/pic/pay/visa.svg">
+        <img alt="PayPal" class="paypal" src="/pic/pay/paypal.svg">
+    </div>
+    <div class="social">
+        <h3>Kövessen minket!</h3>
+        <ul>
+            <li>
+                <a href="#" cl ass="facebook">
+                    <i class="fa-brands fa-facebook fa-2xl"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="twitter">
+                    <i class="fa-brands fa-twitter fa-2xl"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="linkdIn">
+                    <i class="fa-brands fa-linkedin fa-2xl"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>
+<footer>
+    <nav>
+        <ul>
+            <li><a href="#">Felhasználási feltételek</a></li>
+            <li><a href="#">Adatkezelési tájékoztató</a></li>
+            <li><a href="#">Rólunk</a></li>
+        </ul>
+    </nav>
+    <p>&copy; 2023 repjegyek.store | Minden jog fenntartva.</p>
+</footer>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/wow/wow.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/counterup/counterup.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="/javascript/jquery.js"></script>
+<script src="/javascript/main.js"></script>
+<script src="/javascript/biztosito.js"></script>
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/02cb21146d.js"></script>
+</body>
+</html>
+
+

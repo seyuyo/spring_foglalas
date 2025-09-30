@@ -1,0 +1,92 @@
+header {
+    background-color: #333;!important;
+    color: #fff;!important;
+    display: flex;!important;
+    justify-content: space-between;!important;
+    align-items: center;!important;
+    padding: 0 10px 0 10px;!important;
+    height: 60px;!important;
+}
+
+.logo {
+    display: inline-block;!important;
+    align-items: center;!important;
+    width: max-content;!important;
+    margin: 0 0 0 0;!important;
+}
+
+.logo a{
+    color: #fff;!important;
+    text-decoration: none;!important;
+    font-size: 2em;!important;
+    font-weight: bold;!important;
+    font-family: Arial, sans-serif;!important;
+}
+
+.logo a:hover {
+    color: #0077ff;!important;
+    text-decoration: none;!important;
+}
+
+.logo h1 {
+    margin: 0;!important;
+    color: #dddddd;!important;
+    display: block;!important;
+    font-size: inherit;!important;
+    font-weight: inherit;!important;
+    font-family: inherit;!important;
+    text-decoration: none;!important;
+}
+
+.logo h1:hover {
+    color: #0077ff;!important;
+    text-decoration: none;!important;
+}
+
+.unique-nav-bar {
+    display: inline-block;!important;
+    align-items: center;!important;
+    justify-content: right;!important;
+
+}
+
+nav ul {
+    list-style: none;!important;
+    margin: 0;!important;
+    padding: 0;!important;
+    display: flex;!important;
+}
+
+nav li {
+    margin: 0 10px;!important;
+}
+
+nav a {
+    color: #fff;!important;
+    text-decoration: none;!important;
+    font-family: Arial, sans-serif;!important;
+    font-size: 18px;!important;
+}
+
+nav a:hover {
+    color: #0077ff;!important;
+    text-decoration: none;!important;
+}
+
+.login-icon a {
+    color: #333;!important;
+    font-size: 18px;!important;
+    text-decoration: none;!important;
+    display: flex;!important;
+    align-items: center;!important;
+}
+
+.login-icon i {
+    font-size: 20px;!important;
+    margin-right: 10px;!important;
+}
+
+.login-icon a:hover {
+    color: #fff;!important;
+    background-color: #333;!important;
+}

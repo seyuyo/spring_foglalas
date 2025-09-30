@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>Kezdőlap</title>
+  <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+  <link rel="stylesheet" href="/css/index.css" media="screen">
+  <script class="u-script" type="text/javascript" src="/javascript/jquery.js" defer=""></script>
+  <script class="u-script" type="text/javascript" src="/javascript/nicepage.js" defer=""></script>
+  <meta name="generator" content="Nicepage 5.7.9, nicepage.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/aside.css">
+
+  <link id="u-theme-google-font" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+  <meta name="theme-color" content="#478ac9">
+  <meta property="og:title" content="Page 2">
+  <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+<body class="u-body u-xl-mode" data-lang="en">
+<header class="u-header" id="sec-07f2" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
+  <div class="logo">
+    <a href="/"><h1>repjegyek.store</h1></a>
+  </div>
+  <nav class="unique-nav-bar">
+    <ul>
+      <li><a href="/">Kezdőoldal</a></li>
+      <li><a href="/repjegy">Repülőjegyek</a></li>
+      <li><a href="/szalloda">Szállások</a></li>
+      <li><a href="/biztositas">Biztosítások</a></li>
+      <li><a href="/menetrend">Menetrendek</a></li>
+      <li><a class="login-icon" href="/login">
+        <li th:if="${Felhasznalo != null}">
+          <a href="/logout">Kijelentkezés</a>
+        </li>
+        <i class="fa-solid fa-user"></i>
+      </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<section class="u-clearfix u-image u-section-1" id="sec-06b1">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <h1 class="u-text u-text-palette-3-base u-text-1" data-animation-name="customAnimationIn"
+        data-animation-duration="1500" data-animation-delay="0"> A hegyek hívó szavát hallom, és mennem kell.</h1>
+  </div>
+</section>
+<section class="u-align-center u-clearfix u-container-align-center u-palette-5-dark-2 u-section-2" id="carousel_f61d">
+
+  <div class="unpopular-airline">
+    <h2 class="u-text u-text-1">Légy te az első aki repülőjegyet foglal az adott légitársaságokon!</h2>
+    <table class="table table-hover table-active table bordered table-primary">
+      <thead>
+        <tr>
+          <th>Légitársaságok</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="tars : ${nemnepszerulegitarsasagok}">
+          <td th:text="${tars}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="u-clearfix u-sheet u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+    <div class="u-expanded-width u-list u-list-1">
+      <div class="u-repeater u-repeater-1">
+        <div class="u-align-center u-container-style u-list-item u-repeater-item u-shape-rectangle u-white u-list-item-1">
+          <div class="u-container-layout u-similar-container u-container-layout-1">
+            <img class="u-expanded-width u-image u-image-default u-image-1" src="/img/index/Ishtar-Gate-Berlin-Pergamon-Museum.jpg" alt="" data-image-width="1600" data-image-height="1065">
+            <h4 class="u-hover-feature u-text u-text-1">Múzeumok</h4>
+            <p class="u-hover-feature u-text u-text-2"> Ha kirándulni mész, érdemes felkeresni a helyi múzeumokat is, mert ezek lehetnek izgalmas és érdekes látnivalók. A múzeumokban megtalálhatók a régi idők emlékei és az egyedülálló műalkotások, amelyek megmutatják az adott hely kultúráját és történelmét.</p>
+          </div>
+        </div>
+        <div class="u-align-center u-container-style u-list-item u-repeater-item u-shape-rectangle u-video-cover u-white u-list-item-2">
+          <div class="u-container-layout u-similar-container u-container-layout-2">
+            <img class="u-expanded-width u-image u-image-default u-image-2" src="/img/index/fdfd.jpg" alt="" data-image-width="800" data-image-height="800">
+            <h4 class="u-hover-feature u-text u-text-3">Hegymászás</h4>
+            <p class="u-hover-feature u-text u-text-4"> Ha hegyekben túrázol vagy hegymászol, érdemes felkeresni a környék múltjával és természeti örökségével foglalkozó helyeket, ahol megismerheted az adott terület állat- és növényvilágát, a geológiai kincseket, valamint az őslakos népek életmódját és hagyományait.</p>
+          </div>
+        </div>
+        <div class="u-align-center u-container-style u-list-item u-repeater-item u-shape-rectangle u-video-cover u-white u-list-item-3">
+          <div class="u-container-layout u-similar-container u-container-layout-3">
+            <img class="u-expanded-width u-image u-image-default u-image-3" src="/img/index/777.jpg" alt="" data-image-width="900" data-image-height="600">
+            <h4 class="u-hover-feature u-text u-text-5">Túrázás</h4>
+            <p class="u-hover-feature u-text u-text-6"> Ha szeretsz túrázni, akkor számos gyönyörű helyet fedezhetsz fel a természetben. A túrázás nem csak testileg és szellemileg egészséges, hanem lehetőséget ad arra is, hogy elmenekülj a mindennapi élet zajától és friss energiákkal töltsd fel magad.</p>
+          </div>
+        </div>
+        <div class="u-align-center u-container-style u-list-item u-repeater-item u-shape-rectangle u-video-cover u-white u-list-item-4">
+          <div class="u-container-layout u-similar-container u-container-layout-4">
+            <img class="u-expanded-width u-image u-image-default u-image-4" src="/img/index/nemet12.jpg" alt="" data-image-width="1280" data-image-height="586">
+            <h4 class="u-hover-feature u-text u-text-7">Városi körút</h4>
+            <p class="u-hover-feature u-text u-text-8"> Ha szereted felfedezni a városokat, akkor érdemes lehet tervezni egy városi felfedező körutat. A városi körutazás során olyan látnivalókat kereshetsz fel, mint történelmi épületek, műemlékek, múzeumok, parkok, piacok, és az adott város egyéb kulturális és gasztronómiai látnivalói.&nbsp;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="u-align-center u-clearfix u-palette-5-light-2 u-section-3" id="carousel_f588">
+  <div class="u-expanded-width u-palette-5-dark-2 u-shape u-shape-rectangle u-shape-1"></div>
+  <div class="u-clearfix u-gutter-20 u-layout-wrap u-layout-wrap-1">
+    <div class="u-layout">
+      <div class="u-layout-row">
+        <div class="u-size-30 u-size-60-md">
+          <div class="u-layout-col">
+            <div class="u-size-40">
+              <div class="u-layout-row">
+                <div class="u-container-align-center u-container-style u-image u-layout-cell u-shading u-size-60 u-image-1" data-image-width="1280" data-image-height="853">
+                  <div class="u-container-layout u-valign-middle u-container-layout-1">
+                    <h3 class="u-align-center u-text u-text-default u-text-1" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">Moszkva</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-size-20">
+              <div class="u-layout-row">
+                <div class="u-container-align-center u-container-style u-image u-layout-cell u-shading u-size-30 u-image-2" data-image-width="1380" data-image-height="920">
+                  <div class="u-container-layout u-valign-middle u-container-layout-2">
+                    <h3 class="u-align-center u-text u-text-default u-text-2" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">London</h3>
+                  </div>
+                </div>
+                <div class="u-container-align-center u-container-style u-image u-layout-cell u-shading u-size-30 u-image-3" data-image-width="1480" data-image-height="804">
+                  <div class="u-container-layout u-valign-middle u-container-layout-3">
+                    <h3 class="u-align-center u-text u-text-default u-text-3" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">Lisszabon</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-size-30 u-size-60-md">
+          <div class="u-layout-col">
+            <div class="u-size-20">
+              <div class="u-layout-row">
+                <div class="u-container-align-center u-container-style u-image u-layout-cell u-shading u-size-30 u-image-4" data-image-width="740" data-image-height="1110">
+                  <div class="u-container-layout u-valign-middle u-container-layout-4">
+                    <h3 class="u-align-center u-text u-text-default u-text-4" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">Róma<br>
+                    </h3>
+                  </div>
+                </div>
+                <div class="u-container-align-center u-container-style u-image u-layout-cell u-shading u-size-30 u-image-5" data-image-width="1280" data-image-height="853">
+                  <div class="u-container-layout u-valign-middle u-container-layout-5">
+                    <h3 class="u-align-center u-text u-text-default u-text-5" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">München</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-size-40">
+              <div class="u-layout-row">
+                <div class="u-container-align-center u-container-style u-image u-layout-cell u-shading u-size-60 u-image-6" data-image-width="1060" data-image-height="794">
+                  <div class="u-container-layout u-valign-middle u-container-layout-6">
+                    <h3 class="u-align-center u-text u-text-default u-text-6" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">Koppenhága</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="u-align-center u-clearfix u-container-align-center u-palette-5-light-2 u-section-4" id="carousel_73b7">
+  <div class="u-align-center u-container-style u-group u-shape-rectangle u-group-1">
+    <div class="u-container-layout u-valign-middle u-container-layout-1">
+      <h2 class="u-text u-text-1">Gazdagítsd az élményeidet</h2>
+      <p class="u-text u-text-2"> Bátran hajtsd végre az álmaidat, és merj lépni az ismeretlenbe! Ne félj a kihívásoktól, hiszen minden nehézség egy lehetőség arra, hogy megtanulj valami újat és fejlődj tovább.<br>
+        <br>
+      </p>
+    </div>
+  </div>
+  <img class="u-expanded-width u-image u-image-1" data-image-width="1896" data-image-height="1080" src="/img/index/fgfggf-min.jpg">
+  <div class="u-layout-grid u-list u-list-1">
+    <div class="u-repeater u-repeater-1">
+      <div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-1">
+        <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-2"><span class="u-icon u-icon-circle u-text-palette-3-base u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-7a82"></use></svg><svg class="u-svg-content" viewBox="0 0 512 512" id="svg-7a82"><g><path d="m457 121h-106v-35c0-24.813-20.187-45-45-45h-100c-24.813 0-45 20.187-45 45v35h-106c-30.327 0-55 24.673-55 55v240c0 30.327 24.673 55 55 55h402c30.327 0 55-24.673 55-55v-240c0-30.327-24.673-55-55-55zm-266-35c0-8.271 6.729-15 15-15h100c8.271 0 15 6.729 15 15v35h-130zm-111 355h-25c-13.785 0-25-11.215-25-25v-240c0-13.785 11.215-25 25-25h25zm322 0h-292v-290h37.783c-3.129 7.621-4.699 15.551-4.653 23.752.104 18.544 8.698 33.732 15.126 42.52l-16.05 37.573c-1.854 4.342-1.557 9.304.804 13.393l55 95.263c2.778 4.812 7.82 7.503 13.004 7.503 2.544 0 5.124-.648 7.486-2.013l69.282-40c3.445-1.989 5.959-5.266 6.989-9.108 1.029-3.842.49-7.937-1.499-11.382l-55-95.263c-2.36-4.089-6.509-6.827-11.196-7.393l-43.872-5.285c-3.813-4.973-10.012-14.771-10.075-25.976-.046-8.146 3.068-15.903 9.464-23.583h219.407zm-229.26-181.268 12.276-28.737 31.026 3.737 43.75 75.777-43.302 25zm309.26 156.268c0 13.785-11.215 25-25 25h-25v-290h25c13.785 0 25 11.215 25 25z"></path><path d="m326 271c24.813 0 45-20.187 45-45s-20.187-45-45-45-45 20.187-45 45 20.187 45 45 45zm0-60c8.271 0 15 6.729 15 15s-6.729 15-15 15-15-6.729-15-15 6.729-15 15-15z"></path>
+</g></svg></span>
+          <h4 class="u-text u-text-3">Idegenvezetői túrák</h4>
+          <p class="u-text u-text-4">Hogy minél teljesebb élményt szerezz.</p>
+        </div>
+      </div>
+      <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white">
+        <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-3"><span class="u-icon u-icon-circle u-text-palette-3-base u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512.963 512.963" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-6ec3"></use></svg><svg class="u-svg-content" viewBox="0 0 512.963 512.963" id="svg-6ec3"><g><path d="m488.535 148.643c13.314-20.213 22.806-40.646 22.806-57.853-.001-50.061-40.739-90.79-90.813-90.79-23.041 0-44.101 8.628-60.13 22.817-32.77-14.59-67.702-22.004-103.917-22.004-68.381 0-132.668 26.637-181.021 75.005-48.351 48.366-74.979 112.67-74.979 181.07s26.628 132.705 74.979 181.071c48.352 48.367 112.64 75.004 181.021 75.004s132.669-26.637 181.021-75.004c48.351-48.366 74.979-112.672 74.979-181.071 0-37.894-8.062-74.275-23.946-108.245zm-68.007-118.643c33.532 0 60.812 27.271 60.812 60.79 0 17.762-22.311 52.803-58.227 91.45-.869.935-1.885 1.13-2.585 1.13-.701 0-1.718-.195-2.586-1.13-35.915-38.647-58.226-73.689-58.226-91.45 0-33.519 27.281-60.79 60.812-60.79zm-323.851 67.027c42.686-42.699 99.439-66.215 159.805-66.215 3.354 0 6.693.092 10.021.235v15.635c0 13.342-9.495 24.923-22.577 27.539l-20.696 4.14c-27.056 5.411-46.694 29.364-46.694 56.957v27.942c0 7.152-2.691 13.967-7.578 19.189l-27.935 29.853c-12.355 13.204-17.801 31.017-14.942 48.87 1.648 10.294-2.287 20.252-10.527 26.638-8.239 6.387-18.864 7.714-28.421 3.55l-40.55-17.664c-5.065-2.206-10.341-3.645-15.753-4.34-.223-4.137-.347-8.293-.347-12.468-.002-60.388 23.507-117.16 66.194-159.861zm-61.864 204.266 40.338 17.572c7.61 3.314 15.544 4.946 23.401 4.946 12.551 0 24.899-4.166 35.379-12.288 17.041-13.208 25.179-33.803 21.771-55.093-1.362-8.505 1.339-17.339 7.225-23.629l27.935-29.853c10.107-10.801 15.673-24.896 15.673-39.688v-27.942c0-13.341 9.495-24.923 22.577-27.539l20.696-4.14c27.056-5.411 46.694-29.364 46.694-56.957v-12.341c15.198 2.709 30.041 6.966 44.43 12.781-7.145 12.964-11.216 27.849-11.216 43.668 0 33.541 36.027 79.35 66.25 111.872 6.325 6.806 15.277 10.708 24.562 10.708 9.284 0 18.236-3.902 24.561-10.708 7.435-8 15.22-16.807 22.734-26.035 9.722 25.517 14.658 52.42 14.658 80.26 0 8.344-.465 16.616-1.352 24.795-11.451-6.412-24.879-8.603-37.932-5.985l-25.693 5.154c-7.718 1.549-15.848-.631-21.756-5.828-11.886-10.454-27.715-15.329-43.421-13.371-15.708 1.956-29.856 10.563-38.815 23.614l-27.68 40.323c-3.154 4.595-7.811 8.069-13.113 9.785l-17.873 5.782c-24.93 8.065-40.907 32.819-37.99 58.858l2.524 22.538c.283 2.522.186 5.066-.288 7.561l-9.128 48.067c-42.621-8.875-81.787-29.923-113.288-61.432-32.025-32.035-53.256-71.993-61.863-115.455zm381.473 115.456c-42.686 42.698-99.439 66.214-159.805 66.214-5.625 0-11.219-.205-16.772-.61l8.857-46.641c1.033-5.442 1.245-10.993.628-16.498l-2.524-22.538c-1.337-11.934 5.986-23.278 17.411-26.976l17.873-5.782c11.569-3.743 21.73-11.325 28.612-21.35l27.68-40.323c4.167-6.069 10.484-9.913 17.79-10.823 7.305-.908 14.373 1.266 19.9 6.128 12.891 11.338 30.635 16.092 47.469 12.716l25.694-5.154c7.239-1.453 14.735.313 20.566 4.844.168.131.34.258.514.382l5.07 3.604c-9.978 38.552-30.071 73.905-58.963 102.807z"></path><path d="m420.528 106.686c7.846 0 15.363-6.899 15-15-.364-8.127-6.591-15-15-15-7.846 0-15.363 6.899-15 15 .364 8.127 6.591 15 15 15z"></path>
+</g></svg></span>
+          <h4 class="u-text u-text-5">Fedezd fel a világot</h4>
+          <p class="u-text u-text-6">Elképesztő természeti látnivalók.</p>
+        </div>
+      </div>
+      <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white">
+        <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-4"><span class="u-icon u-icon-circle u-text-palette-3-base u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 510 510" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a4cd"></use></svg><svg class="u-svg-content" viewBox="0 0 510 510" id="svg-a4cd"><g><path d="m375 0h30v30h-30z"></path><path d="m450 120h30v30h-30z"></path><path d="m285 60h30v30h-30z"></path><path d="m180 15h30v30h-30z"></path><path d="m90 195c28.704 0 55.933-13.89 72.837-37.156l14.746-20.295-24.857-3.385c-46.641-6.352-81.449-48.575-77.398-96.821l2.095-24.923-22.973 9.888c-33.077 14.237-54.45 46.696-54.45 82.692 0 49.626 40.374 90 90 90zm-43.537-131.3c6.685 42.453 35.401 77.388 74.207 92.826-9.178 5.463-19.766 8.474-30.67 8.474-33.084 0-60-26.916-60-60 0-15.685 6.087-30.362 16.463-41.3z"></path><path d="m487.565 480-213.913-289.412 23.41-31.672-24.125-17.832-17.937 24.268-17.938-24.268-24.125 17.832 23.41 31.672-213.912 289.412h-22.435v30h510v-30zm-232.565-264.176 195.261 264.176h-82.026l-113.235-177.94-113.234 177.94h-82.027zm-15 264.176h-62.675l62.675-98.489zm30-98.489 62.675 98.489h-62.675z"></path>
+</g></svg></span>
+          <h4 class="u-text u-text-7">Izgalmas kalandok</h4>
+          <p class="u-text u-text-8"> Hegymászás, vízi sportok, szafari túrák.</p>
+        </div>
+      </div>
+      <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white">
+        <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-5"><span class="u-icon u-icon-circle u-text-palette-3-base u-icon-4"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-203e"></use></svg><svg class="u-svg-content" viewBox="0 0 512 512" id="svg-203e"><g><path d="m406.312 482v-384.132h-39.99v-64.972h-95.322v-32.896h-30v32.896h-95.322v64.972h-39.99v384.132h-54.4v30h409.424v-30zm-230.634-419.104h160.644v34.972h-160.644zm140.634 419.104h-45.312v-109.629h45.312zm-75.312 0h-45.312v-109.629h45.312zm105.312 0v-139.629h-180.624v139.629h-30v-354.132h240.624v354.132z"></path><path d="m165.688 158.205h30v30h-30z"></path><path d="m316.312 158.205h30v30h-30z"></path><path d="m241 158.205h30v30h-30z"></path><path d="m165.688 218.541h30v30h-30z"></path><path d="m316.312 218.541h30v30h-30z"></path><path d="m241 218.541h30v30h-30z"></path><path d="m165.688 278.878h30v30h-30z"></path><path d="m316.312 278.878h30v30h-30z"></path><path d="m241 278.878h30v30h-30z"></path>
+</g></svg></span>
+          <h4 class="u-text u-text-9">Luxus szállodák</h4>
+          <p class="u-text u-text-10">A világ legjobb szállodáit kínáljuk vendégeinknek.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="u-align-center u-clearfix u-palette-3-base u-section-5" id="carousel_e1ec">
+  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+    <h3 class="u-align-center u-text u-text-1"> "Minden pillanat és minden esemény az ember életében valami újat ültet a lelkébe."</h3>
+  </div>
+</section>
+<section class="u-clearfix u-palette-3-base u-section-6" id="carousel_983f">
+  <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+    <div class="u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-group-1">
+      <div class="u-container-layout u-container-layout-1">
+        <h2 class="u-text u-text-1">Miért mi?</h2>
+        <p class="u-text u-text-2"> Az ügyfeleink minket választanak, mert vezető technológiát biztosítunk, páratlan szolgáltatásokat és képzést nyújtunk, valamint az iparágban a legjobb ár-érték arányt kínáljuk.</p>
+        <p class="u-text u-text-3"> Az ügyfeleink elégedettsége a legfontosabb számunkra, ezért mindig arra törekszünk, hogy a legjobb minőséget és szolgáltatást nyújtsuk. Folyamatosan fejlesztjük technológiánkat és szakértelmünket, hogy még hatékonyabb és magasabb színvonalú szolgáltatást tudjunk biztosítani ügyfeleink számára. Bízunk benne, hogy nálunk megtalálják azokat az eszközöket és lehetőségeket, amelyekkel még sikeresebbek és versenyképesebbek lehetnek az iparágban.</p>
+      </div>
+    </div>
+    <div class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-layout-grid u-list u-list-1">
+      <div class="u-repeater u-repeater-1">
+        <div class="u-container-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle u-white u-list-item-1">
+          <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2"><span class="u-align-left u-icon u-icon-circle u-text-palette-3-base u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 95.333 95.332" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a13b"></use></svg><svg class="u-svg-content" viewBox="0 0 95.333 95.332" x="0px" y="0px" id="svg-a13b" style="enable-background:new 0 0 95.333 95.332;"><g><g><path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793    c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045    s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076    c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002    c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"></path><path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019    c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23    c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16    c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312    c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"></path>
+</g>
+</g></svg></span>
+            <p class="u-align-left u-text u-text-4"> Nagyon örülök, hogy felfedeztem ezt az oldalt, és megismertem a szolgáltatásaikat. A cég kiváló technológiájával és szaktudásával páratlan szolgáltatást nyújt. Az ár-érték arány is fantasztikus, így biztosan az egyik legjobb döntés volt.</p>
+            <h5 class="u-align-left u-text u-text-5">John K.</h5>
+          </div>
+        </div>
+        <div class="u-container-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle u-white u-list-item-2">
+          <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-3"><span class="u-align-left u-icon u-icon-circle u-text-palette-3-base u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 351.128 351.128" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c1b6"></use></svg><svg class="u-svg-content" viewBox="0 0 351.128 351.128" x="0px" y="0px" id="svg-c1b6" style="enable-background:new 0 0 351.128 351.128;"><g><path d="M72.326,147.33c4.284-26.928,37.944-55.692,64.26-56.304c1.836,0,3.672-0.612,4.896-1.836   c1.224-0.612,2.448-1.224,3.06-3.06c9.18-17.136,4.284-30.6-11.016-41.616c-17.748-12.852-45.9,0-59.976,11.628   C38.054,85.518,1.946,136.313,3.782,184.662c-6.12,32.437-4.896,67.32,4.284,96.084c6.12,18.36,23.868,27.54,42.228,28.764   c18.36,1.225,56.304,6.732,72.828-4.283c16.524-11.017,17.748-32.437,19.584-50.796c1.836-20.196,7.344-58.141-9.792-74.053   C115.778,165.078,66.818,181.602,72.326,147.33z"></path><path d="M274.286,147.33c4.284-26.928,37.943-55.692,64.26-56.304c1.836,0,3.672-0.612,4.896-1.836   c1.225-0.612,2.448-1.224,3.061-3.06c9.18-17.136,4.284-30.6-11.016-41.616c-17.748-12.852-45.9,0-59.977,11.628   c-35.496,29.376-71.604,80.172-69.768,128.52c-6.12,32.437-4.896,67.32,4.283,96.084c6.12,18.36,23.868,27.54,42.229,28.764   c18.36,1.225,56.304,6.732,72.828-4.283c16.523-11.017,17.748-32.437,19.584-50.796c1.836-20.196,7.344-58.141-9.792-74.053   C317.738,165.078,268.166,181.602,274.286,147.33z"></path>
+</g></svg></span>
+            <p class="u-align-left u-text u-text-6"> Fantasztikus élmény volt a szolgáltatásokat igénybe venni, mindig azonnal választ kaptam a kérdéseimre, és a csapat mindig készen állt arra, hogy segítsen. Nagyon örülök, hogy rátaláltam erre a cégre, és nagyon ajánlom mindenkinek!&nbsp;</p>
+            <h5 class="u-align-left u-text u-text-7"> Mary T.</h5>
+          </div>
+        </div>
+        <div class="u-container-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle u-white u-list-item-3">
+          <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-4"><span class="u-align-left u-icon u-icon-circle u-text-palette-3-base u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 351.128 351.128" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c1b6"></use></svg><svg class="u-svg-content" viewBox="0 0 351.128 351.128" x="0px" y="0px" id="svg-c1b6" style="enable-background:new 0 0 351.128 351.128;"><g><path d="M72.326,147.33c4.284-26.928,37.944-55.692,64.26-56.304c1.836,0,3.672-0.612,4.896-1.836   c1.224-0.612,2.448-1.224,3.06-3.06c9.18-17.136,4.284-30.6-11.016-41.616c-17.748-12.852-45.9,0-59.976,11.628   C38.054,85.518,1.946,136.313,3.782,184.662c-6.12,32.437-4.896,67.32,4.284,96.084c6.12,18.36,23.868,27.54,42.228,28.764   c18.36,1.225,56.304,6.732,72.828-4.283c16.524-11.017,17.748-32.437,19.584-50.796c1.836-20.196,7.344-58.141-9.792-74.053   C115.778,165.078,66.818,181.602,72.326,147.33z"></path><path d="M274.286,147.33c4.284-26.928,37.943-55.692,64.26-56.304c1.836,0,3.672-0.612,4.896-1.836   c1.225-0.612,2.448-1.224,3.061-3.06c9.18-17.136,4.284-30.6-11.016-41.616c-17.748-12.852-45.9,0-59.977,11.628   c-35.496,29.376-71.604,80.172-69.768,128.52c-6.12,32.437-4.896,67.32,4.283,96.084c6.12,18.36,23.868,27.54,42.229,28.764   c18.36,1.225,56.304,6.732,72.828-4.283c16.523-11.017,17.748-32.437,19.584-50.796c1.836-20.196,7.344-58.141-9.792-74.053   C317.738,165.078,268.166,181.602,274.286,147.33z"></path>
+</g></svg></span>
+            <p class="u-align-left u-text u-text-8"> Az oldal olyan szolgáltatásokat kínál, amelyekre valóban szükségem volt. Nagyon elégedett vagyok a minőséggel és a szolgáltatással, csak ajánlani tudom őket.</p>
+            <h5 class="u-align-left u-text u-text-9"> David L.</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<aside>
+  <div class="contact">
+    <h3>Kapcsolat</h3>
+    <ul>
+      <li><i class="fas fa-phone"></i> +1-123-456-7890</li>
+      <li><i class="fas fa-envelope"></i> info@jegyfoglalas.hu</li>
+      <li><i class="fas fa-map-marker-alt"></i>1055 Szent Gellért tér 82., Budapest</li>
+    </ul>
+  </div>
+  <div class="payment-options">
+    <h3>Fizetési lehetőségek</h3>
+    <img class="mastercard" src="/pic/pay/mastercard.svg" alt="Mastercard">
+    <img class="visa" src="/pic/pay/visa.svg" alt="Visa">
+    <img class="paypal" src="/pic/pay/paypal.svg" alt="PayPal">
+  </div>
+  <div class="social">
+    <h3>Kövessen minket!</h3>
+    <ul>
+      <li>
+        <a href="#" class="facebook">
+          <i class="fa-brands fa-facebook fa-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="twitter">
+          <i class="fa-brands fa-twitter fa-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="linkdIn">
+          <i class="fa-brands fa-linkedin fa-2xl"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</aside>
+<footer>
+  <nav>
+    <ul>
+      <li><a href="#">Felhasználási feltételek</a></li>
+      <li><a href="#">Adatkezelési tájékoztató</a></li>
+      <li><a href="#">Rólunk</a></li>
+    </ul>
+  </nav>
+  <p>&copy; 2023 repjegyek.store | Minden jog fenntartva.</p>
+</footer>
+
+<script src="https://kit.fontawesome.com/02cb21146d.js" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

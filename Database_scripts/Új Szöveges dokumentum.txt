@@ -1,0 +1,8 @@
+@PostMapping(value = "/legnepszerubb_repjegyek")
+    public ModelAndView legnepszerubb_repjegyek() throws Exception {
+        List<Repulojarat> repulojaratList = new ArrayList<>();
+        String sql = "SELECT * FROM ( SELECT jaratszam, indulasi_varos, erkezesi_varos, indulasi_idopont, erkezesi_idopont, ulesek_szama, utasok_szama, admin_id, legitarsasag_kod, (SELECT COUNT(*) FROM Repjegy_foglalas WHERE jaratszam = r.jaratszam) AS foglalasok_szama FROM Repulojarat r ORDER BY foglalasok_szama DESC) WHERE ROWNUM <= 10";
+        repulojaratList = repulojaratBasicDAO.runSql(new Repulojarat(), sql);
+
+        return new ModelAndView("Repjegy", "Jaratok", repulojaratList);
+    }

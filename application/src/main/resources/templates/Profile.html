@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adatlap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/aside.css">
+    <link rel="stylesheet" href="/css/profil.css">
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="/"><h1>repjegyek.store</h1></a>
+    </div>
+    <nav class="unique-nav-bar">
+        <ul>
+            <li><a href="/">Kezdőoldal</a></li>
+            <li><a href="/repjegy">Repülőjegyek</a></li>
+            <li><a href="/szalloda">Szállások</a></li>
+            <li><a href="/biztositas">Biztosítások</a></li>
+            <li><a href="/menetrend">Menetrendek</a></li>
+            <li th:if="${Felhasznalo != null}">
+                <a href="/logout">Kijelentkezés</a>
+            </li>
+            <li><a class="login-icon" href="/login">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-xl-6 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
+                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                <div class="card-block text-center text-white">
+                                    <h6 class="f-w-600">NÉV</h6>
+                                    <p th:text="${Felhasznalo.nev}"></p>
+                                    <a href="/Profil-szerkesztes" >
+                                        <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-block">
+                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Információ</h6>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Email</p>
+                                            <h6 th:text="${Felhasznalo.e_mail}" class="text-muted f-w-400"></h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Telefonszám</p>
+                                            <h6 th:text="${Felhasznalo.telefonszam}" class="text-muted f-w-400"></h6>
+                                        </div>
+                                    </div>
+                                    <ul class="social-link list-unstyled m-t-40 m-b-10">
+                                        <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
+                                        <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-center">Repülőjegyeim</h2>
+        <table class="table table-hover table-info">
+            <thead>
+                <tr>
+                    <th>Járatszám</th>
+                    <th>Indulási Város</th>
+                    <th>Érkezési város</th>
+                    <th>indulási időpont</th>
+                    <th>érkezési időpont</th>
+                    <th>Fizetve</th>
+                    <th>Darab</th>
+                    <th>típus</th>
+                    <th>Osztály</th>
+                    <th>Légitársaság név</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="jegy : ${Repjegyek}">
+                    <td th:text="${jegy.jaratszam}"></td>
+                    <td th:text="${jegy.indulasi_varos}"></td>
+                    <td th:text="${jegy.erkezesi_varos}"></td>
+                    <td th:text="${jegy.indulasi_idopont}"></td>
+                    <td th:text="${jegy.erkezesi_idopont}"></td>
+                    <td th:text="${jegy.fizetve}"></td>
+                    <td th:text="${jegy.jegydarab}"></td>
+                    <td th:text="${jegy.jegytipus}"></td>
+                    <td th:text="${jegy.osztaly}"></td>
+                    <td th:text="${jegy.nev}"></td>
+                    <td>
+                        <form th:action="@{/repjegyfoglalas_torles/{jaratszam}(jaratszam=${jegy.repjegy_foglalas_id})}" method="POST">
+                            <button type="submit" class="btn btn-danger" name="torles" value="torles">
+                                Törlés
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h2 class="text-center">Szállásaim</h2>
+        <table class="table table-hover table-info">
+            <thead>
+                <tr>
+                    <th>Név</th>
+                    <th>Város</th>
+                    <th>Cím</th>
+                    <th>Foglalas kezdete</th>
+                    <th>Foglalas vége</th>
+                    <th>Ár</th>
+                    <th>Fő</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="szalloda : ${Szallodak}">
+                    <td th:text="${szalloda.nev}"></td>
+                    <td th:text="${szalloda.varos}"></td>
+                    <td th:text="${szalloda.cim}"></td>
+                    <td th:text="${szalloda.foglalas_kezdete}"></td>
+                    <td th:text="${szalloda.foglalas_vege}"></td>
+                    <td th:text="${szalloda.ar} + ' Forint'"></td>
+                    <td th:text="${szalloda.fo}"></td>
+                    <td>
+                        <form th:action="@{/szallodafoglalas_torles/{jaratszam}(jaratszam=${szalloda.szalloda_foglalas_id})}" method="POST">
+                            <button type="submit" class="btn btn-danger" name="torles" value="torles">
+                                Törlés
+                            </button>
+                        </form>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+<aside>
+    <div class="contact">
+        <h3>Kapcsolat</h3>
+        <ul>
+            <li><i class="fas fa-phone"></i> +1-123-456-7890</li>
+            <li><i class="fas fa-envelope"></i> info@jegyfoglalas.hu</li>
+            <li><i class="fas fa-map-marker-alt"></i>1055 Szent Gellért tér 82., Budapest</li>
+        </ul>
+    </div>
+    <div class="payment-options">
+        <h3>Fizetési lehetőségek</h3>
+        <img class="mastercard" src="/pic/pay/mastercard.svg" alt="Mastercard">
+        <img class="visa" src="/pic/pay/visa.svg" alt="Visa">
+        <img class="paypal" src="/pic/pay/paypal.svg" alt="PayPal">
+    </div>
+    <div class="social">
+        <h3>Kövessen minket!</h3>
+        <ul>
+            <li>
+                <a href="#" class="facebook">
+                    <i class="fa-brands fa-facebook fa-2xl"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="twitter">
+                    <i class="fa-brands fa-twitter fa-2xl"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="linkdIn">
+                    <i class="fa-brands fa-linkedin fa-2xl"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</aside>
+<footer>
+    <nav>
+        <ul>
+            <li><a href="#">Felhasználási feltételek</a></li>
+            <li><a href="#">Adatkezelési tájékoztató</a></li>
+            <li><a href="#">Rólunk</a></li>
+        </ul>
+    </nav>
+    <p>&copy; 2023 repjegyek.store | Minden jog fenntartva.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/02cb21146d.js" crossorigin="anonymous"></script>
+<script src="/javascript/jquery.js"></script>
+<script src="/javascript/profile.js"></script>
+</body>
+</html>
+
+

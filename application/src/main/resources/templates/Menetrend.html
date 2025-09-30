@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+  <title>Menetrendek</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/css/menetrend.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/aside.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-khIpoy0tX9M61xFNtuYrOBdM0bymud0/uvjbj94Dbnw/5D/DBExhcQ8nIS5k5S5P5UXn47+JZ8xwZzD4egE4w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <a href="/"><h1>repjegyek.store</h1></a>
+  </div>
+  <nav class="unique-nav-bar">
+    <ul>
+      <li><a href="/">Kezdőoldal</a></li>
+      <li><a href="/repjegy">Repülőjegyek</a></li>
+      <li><a href="/szalloda">Szállások</a></li>
+      <li><a href="/biztositas">Biztosítások</a></li>
+      <li><a href="/menetrend">Menetrendek</a></li>
+      <li th:if="${Felhasznalo != null}">
+        <a href="/logout">Kijelentkezés</a>
+      </li>
+      <li><a class="login-icon" href="/login">
+        <i class="fa-solid fa-user"></i>
+      </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <h2>Menetrendek</h2>
+  <table class="table table-hover table-info">
+    <thead>
+    <tr>
+      <th>Járatszám</th>
+      <th>Indulási város</th>
+      <th>Érkezési város</th>
+      <th>Indulási időpont</th>
+      <th>Érkezési időpont</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="jarat : ${Jaratok}">
+      <td th:text="${jarat.jaratszam}"></td>
+      <td th:text="${jarat.indulasi_varos}"></td>
+      <td th:text="${jarat.erkezesi_varos}"></td>
+      <td th:text="${jarat.indulasi_idopont}"></td>
+      <td th:text="${jarat.erkezesi_idopont}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+</main>
+<aside>
+  <div class="contact">
+    <h3>Kapcsolat</h3>
+    <ul>
+      <li><i class="fas fa-phone"></i> +1-123-456-7890</li>
+      <li><i class="fas fa-envelope"></i> info@jegyfoglalas.hu</li>
+      <li><i class="fas fa-map-marker-alt"></i>1055 Szent Gellért tér 82., Budapest</li>
+    </ul>
+  </div>
+  <div class="payment-options">
+    <h3>Fizetési lehetőségek</h3>
+    <img class="mastercard" src="/pic/pay/mastercard.svg" alt="Mastercard">
+    <img class="visa" src="/pic/pay/visa.svg" alt="Visa">
+    <img class="paypal" src="/pic/pay/paypal.svg" alt="PayPal">
+  </div>
+  <div class="social">
+    <h3>Kövessen minket!</h3>
+    <ul>
+      <li>
+        <a href="#" class="facebook">
+          <i class="fa-brands fa-facebook fa-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="twitter">
+          <i class="fa-brands fa-twitter fa-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="linkdIn">
+          <i class="fa-brands fa-linkedin fa-2xl"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</aside>
+<footer>
+  <nav>
+    <ul>
+      <li><a href="#">Felhasználási feltételek</a></li>
+      <li><a href="#">Adatkezelési tájékoztató</a></li>
+      <li><a href="#">Rólunk</a></li>
+    </ul>
+  </nav>
+  <p>&copy; 2023 repjegyek.store | Minden jog fenntartva.</p>
+</footer>
+
+<script src="https://kit.fontawesome.com/02cb21146d.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+

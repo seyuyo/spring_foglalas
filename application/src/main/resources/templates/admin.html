@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin felület</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+          integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" rel="stylesheet"/>
+
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+    <!-- NAVBAR CSS -->
+    <link href="/css/navbar.css" rel="stylesheet">
+    <!-- FOOTER CSS -->
+    <link href="/css/footer.css" rel="stylesheet">
+    <!-- MAIN -->
+    <link href="/css/admin.css" rel="stylesheet">
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="/"><h1>repjegyek.store</h1></a>
+    </div>
+    <nav class="unique-nav-bar">
+        <ul>
+            <li>
+                <a href="/logout">Kijelentkezés</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <div class="button-container">
+        <button class="btn btn-info toggle-button" data-target=".jarat-container" id="jarat-button" type="button">
+            Járatok
+        </button>
+        <button class="btn btn-info toggle-button" data-target=".szalloda-container" id="szalloda-button" type="button">
+            Szállodák
+        </button>
+        <button class="btn btn-info toggle-button" data-target=".legitarsasag-container" id="legitarsasag-button"
+                type="button">Légitársaságok
+        </button>
+        <button class="btn btn-info toggle-button" data-target=".felhasznalo-container" id="felhasznalo-button"
+                type="button">Felhasználók
+        </button>
+        <button class="btn btn-info toggle-button" data-target=".biztosito-container" id="biztosito-button"
+                type="button">Biztosítók
+        </button>
+        <button class="btn btn-info toggle-button" data-target=".biztosito-csomag-container" id="biztosito-csomag-button"
+                type="button">Biztosítások
+        </button>
+        <button class="btn btn-info toggle-button" data-target=".arajanlat-container" id="arajanlat-button"
+                type="button">Árajánlatok
+        </button>
+        <button class="btn btn-info toggle-button" data-target=".arajanlat-container" id="active-users-button"
+                type="button">Aktív felhasználók
+        </button>
+
+    </div>
+
+
+    <div class="active-users-container">
+        <div class="active-title">
+            <h3>
+                Lista azokról a felhasználókról, akiknek van legalább egy szálloda foglalása
+                és legalább egy biztosítási csomagjuk.
+            </h3>
+        </div>
+        <table class="table table-dark">
+            <thead>
+            <tr class="bg-primary">
+                <th>Felhasználó neve</th>
+                <th>Felhasználó email címe</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="felh : ${aktivFelhasznalok}">
+                <td th:text="${felh.nev}"></td>
+                <td th:text="${felh.e_mail}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    <!-- TODO: JÁRATOK JÁRATOK JÁRATOK JÁRATOK JÁRATOK JÁRATOK JÁRATOK JÁRATOK   -->
+    <div class="jarat-container">
+        <h3>Járat hozzáadása</h3>
+        <form id="jarat-add-form" method="POST" th:action="@{/repulojarat_hozzaadas}">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+
+                        <label for="indulas">Indulási város</label>
+                        <input class="form-control" id="indulas" name="indulas" placeholder="Indulási város"
+                               th:if="${Repulojarat == null}" type="text">
+                        <input class="form-control" id="indulas2" name="indulas"
+                               placeholder="Indulási város" th:if="${Repulojarat != null}"
+                               th:value="${Repulojarat.indulasi_varos}" type="text">
+                        <input class="form-control" hidden name="jaratszam" placeholder="Indulási város"
+                               th:if="${Repulojarat != null}" th:value="${Repulojarat.jaratszam}" type="text">
+                        <input class="form-control" hidden name="jaratszam" placeholder="Indulási város"
+                               th:if="${Repulojarat == null}"
+                               type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="erkezes">Érkezési város</label>
+                        <input class="form-control" id="erkezes" name="erkezes" placeholder="Érkezési város"
+                               th:if="${Repulojarat == null}" type="text">
+                        <input class="form-control" id="erkezes2" name="erkezes"
+                               placeholder="Érkezési város" th:if="${Repulojarat != null}"
+                               th:value="${Repulojarat.erkezesi_varos}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="indulasido">Indulási időpont</label>
+                        <input class="form-control" id="indulasido" name="indulasido" placeholder="Indulási időpont"
+                               th:if="${Repulojarat == null}" type="datetime-local">
+                        <input class="form-control" id="indulasido2"
+                               name="indulasido" placeholder="Indulási időpont" th:if="${Repulojarat != null}" th:value="${Repulojarat.indulasi_idopont}"
+                               type="datetime-local">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="erkezesido">Érkezési időpont</label>
+                        <input class="form-control" id="erkezesido" name="erkezesido" placeholder="Érkezési időpont"
+                               th:if="${Repulojarat == null}" type="datetime-local">
+                        <input class="form-control" id="erkezesido2"
+                               name="erkezesido" placeholder="Érkezési időpont" th:if="${Repulojarat != null}"
+                               th:value="${Repulojarat.erkezesi_idopont}"
+                               type="datetime-local">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="ulesek">Ülések száma</label>
+                        <input class="form-control" id="ulesek" name="ulesek" placeholder="Ülések száma"
+                               th:if="${Repulojarat == null}"
+                               type="text">
+                        <input class="form-control" id="ulesek2" name="ulesek"
+                               placeholder="Ülések száma" th:if="${Repulojarat != null}"
+                               th:value="${Repulojarat.ulesek_szama}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="legitarsasagkod">Légitársaság kódja</label>
+                        <input class="form-control" id="legitarsasagkod" name="legitarsasagkod"
+                               placeholder="Légitársaság kódja"
+                               th:if="${Repulojarat == null}" type="text">
+                        <input class="form-control" id="legitarsasagkod2" name="legitarsasagkod"
+                               placeholder="Légitársaság kódja" th:if="${Repulojarat != null}"
+                               th:value="${Repulojarat.legitarsasag_kod}" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="form-group">
+                        <button class="add-jarat-btn btn btn-primary" th:if="${Repulojarat == null}"
+                                type="submit">Repülőjárat hozzáadása
+                        </button>
+                        <button class="edit-jarat-btn btn btn-primary" th:if="${Repulojarat != null}"
+                                type="submit">Repülőjárat szerkesztése
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-dark">
+            <thead>
+            <tr class="bg-primary">
+                <th>Járatszám</th>
+                <th>Indulási város</th>
+                <th>Érkezési város</th>
+                <th>Indulási időpont</th>
+                <th>Érkezési időpont</th>
+                <th>Ülések száma</th>
+                <th>Utasok száma</th>
+                <th>Admin ID</th>
+                <th>Légitársaság Kódja</th>
+                <th>Szerkesztés</th>
+                <th>Törlés</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="jarat : ${Jaratok}">
+                <td th:text="${jarat.jaratszam}"></td>
+                <td th:text="${jarat.indulasi_varos}"></td>
+                <td th:text="${jarat.erkezesi_varos}"></td>
+                <td th:text="${jarat.indulasi_idopont}"></td>
+                <td th:text="${jarat.erkezesi_idopont}"></td>
+                <td th:text="${jarat.ulesek_szama}"></td>
+                <td th:text="${jarat.utasok_szama}"></td>
+                <td th:text="${jarat.admin_id}"></td>
+                <td th:text="${jarat.legitarsasag_kod}"></td>
+                <td>
+                    <form id="jarat-form"
+                          method="POST"
+                          th:action="@{/repulojarat_szerkesztes/{jaratszam}(jaratszam=${jarat.jaratszam})}">
+                        <button class="reserve-button btn btn-success" id="jarat-szerk-btn" type="submit">
+                            Szerkesztés
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" th:action="@{/repulojarat_torles/{jaratszam}(jaratszam=${jarat.jaratszam})}">
+                        <button class="reserve-button btn btn-danger" id="jarat-del-btn" type="submit">Törlés</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TODO: JÁRATOK JÁRATOK JÁRATOK JÁRATOK JÁRATOK JÁRATOK JÁRATOK JÁRATOK   -->
+
+
+
+
+
+
+    <!-- TODO: SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA   -->
+    <div class="szalloda-container">
+        <h3>Szálloda hozzáadása</h3>
+        <form method="POST" th:action="@{/szalloda_hozzaadas}">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="szallodanev">Szálloda Név</label>
+                        <input class="form-control" id="szallodanev" name="szallodanev"
+                               placeholder="Szálloda Név" th:if="${Szalloda == null}" type="text">
+                        <input class="form-control" id="szallodanev2" name="szallodanev"
+                               placeholder="Szálloda Név" th:if="${Szalloda != null}" th:value="${Szalloda.nev}" type="text">
+                        <input class="form-control" hidden name="szalloda_id"
+                               placeholder="Szálloda Név" th:if="${Szalloda != null}" th:value="${Szalloda.szalloda_id}" type="text">
+                        <input class="form-control" hidden name="szalloda_id" placeholder="Szálloda Név"
+                               th:if="${Szalloda == null}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="varos">Város</label>
+                        <input class="form-control" id="varos" name="varos"
+                               placeholder="Város" th:if="${Szalloda == null}" type="text">
+                        <input class="form-control" id="varos2" name="varos"
+                               placeholder="Város" th:if="${Szalloda != null}" th:value="${Szalloda.varos}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="ar">Ár</label>
+                        <input class="form-control" id="ar" name="ar" placeholder="Ár" th:if="${Szalloda == null}"
+                               type="number">
+                        <input class="form-control" id="ar22" name="ar" placeholder="Ár"
+                               th:if="${Szalloda != null}" th:value="${Szalloda.ar}" type="number">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="cim">Cím</label>
+                        <input class="form-control" id="cim" name="cim" placeholder="Cím" th:if="${Szalloda == null}"
+                               type="text">
+                        <input class="form-control" id="cim2" name="cim" placeholder="Cím"
+                               th:if="${Szalloda != null}" th:value="${Szalloda.cim}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="szobafero">Szoba Férőhelyek száma</label>
+                        <input class="form-control" id="szobafero" name="szobafero" placeholder="Szoba Férőhelyek száma"
+                               th:if="${Szalloda == null}" type="number">
+                        <input class="form-control" id="szobafero2" name="szobafero"
+                               placeholder="Szoba Férőhelyek száma" th:if="${Szalloda != null}"
+                               th:value="${Szalloda.szoba_ferohelyek_szama}" type="number">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="form-group">
+                        <button class="add-hotel-btn btn btn-primary" th:if="${Szalloda == null}" type="submit">
+                            Szálloda Hozzáadása
+                        </button>
+                        <button class="edit-hotel-btn btn btn-primary" th:if="${Szalloda != null}" type="submit">
+                            Szálloda Szerkesztése
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <table class="table table-dark">
+            <thead>
+            <tr class="bg-primary">
+                <th>Szálloda ID</th>
+                <th>Név</th>
+                <th>Város</th>
+                <th>Cím</th>
+                <th>Férőhelyek száma</th>
+                <th>Ár (HUF)</th>
+                <th>Admin ID</th>
+                <th>Szerkesztés</th>
+                <th>Törlés</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="szalloda : ${Szallodak}">
+                <td th:text="${szalloda.szalloda_id}"></td>
+                <td th:text="${szalloda.nev}"></td>
+                <td th:text="${szalloda.varos}"></td>
+                <td th:text="${szalloda.cim}"></td>
+                <td th:text="${szalloda.szoba_ferohelyek_szama}"></td>
+                <td th:text="${szalloda.ar}"></td>
+                <td th:text="${szalloda.admin_id}"></td>
+                <td>
+                    <form method="POST"
+                          th:action="@{/szalloda_szerkesztes/{szalloda_id}(szalloda_id=${szalloda.szalloda_id})}">
+                        <button class="add-hotel-btn btn btn-success" id="szallo-szerk-btn" type="submit">Szerkesztés
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST"
+                          th:action="@{/szalloda_torles/{szalloda_id}(szalloda_id=${szalloda.szalloda_id})}">
+                        <button class="edit-hotel-btn btn btn-danger" type="submit">Törlés</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TODO: SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA SZÁLLODA   -->
+
+
+
+
+
+
+    <!-- TODO:LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG   -->
+    <div class="legitarsasag-container">
+        <h3>Légitársaság hozzáadása</h3>
+        <form id="szerkeszto-form" method="POST" th:action="@{/legitarsasag_hozzaadas}">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="nev">Név</label>
+                        <input class="form-control" id="nev" name="nev" placeholder="Név" th:if="${Legitarsasag == null}"
+                               type="text">
+                        <input class="form-control" id="nev2" name="nev"
+                               placeholder="Név" th:if="${Legitarsasag != null}" th:value="${Legitarsasag.nev}" type="text">
+                        <input class="form-control" hidden name="legitarsasag_kod"
+                               placeholder="Név" th:if="${Legitarsasag != null}" th:value="${Legitarsasag.legitarsasag_kod}" type="text">
+                        <input class="form-control" hidden name="legitarsasag_kod" placeholder="Név"
+                               th:if="${Legitarsasag == null}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="orszag">Ország</label>
+                        <input class="form-control" id="orszag" name="orszag" placeholder="Ország"
+                               th:if="${Legitarsasag == null}" type="text">
+                        <input class="form-control" id="orszag2" name="orszag"
+                               placeholder="Ország" th:if="${Legitarsasag != null}" th:value="${Legitarsasag.orszag}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="flotta">Flotta</label>
+                        <input class="form-control" id="flotta" name="flotta" placeholder="Flotta"
+                               th:if="${Legitarsasag == null}" type="text">
+                        <input class="form-control" id="flotta2" name="flotta"
+                               placeholder="Flotta" th:if="${Legitarsasag != null}" th:value="${Legitarsasag.flotta}" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="form-group">
+                        <button class="reserve-button btn btn-primary" th:if="${Legitarsasag == null}" type="submit">
+                            Légitársaság Hozzáadása
+                        </button>
+                        <button class="reserve-button btn btn-primary" th:if="${Legitarsasag != null}" type="submit">
+                            Légitársaság szerkesztése
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-dark">
+            <thead>
+            <tr class="bg-primary">
+                <th>Légitársaság Kódja</th>
+                <th>Név</th>
+                <th>Ország</th>
+                <th>Flotta</th>
+                <th>Admin ID</th>
+                <th>Szerkesztés</th>
+                <th>Törlés</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="legitarsasag : ${Legitarsasagok}">
+                <td th:text="${legitarsasag.legitarsasag_kod}"></td>
+                <td th:text="${legitarsasag.nev}"></td>
+                <td th:text="${legitarsasag.orszag}"></td>
+                <td th:text="${legitarsasag.flotta}"></td>
+                <td th:text="${legitarsasag.admin_id}"></td>
+                <td>
+                    <form method="POST"
+                          th:action="@{/legitarsasag_szerkesztes/{legitarsasag_kod}(legitarsasag_kod=${legitarsasag.legitarsasag_kod})}">
+                        <button class="reserve-button btn btn-success" type="submit">Szerkesztés</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST"
+                          th:action="@{/legitarsasag_torles/{legitarsasag_kod}(legitarsasag_kod=${legitarsasag.legitarsasag_kod})}">
+                        <button class="reserve-button btn btn-danger" type="submit">Törlés</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TODO: LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG LÉGITÁRSASÁG  -->
+
+
+
+
+
+
+    <!-- TODO: FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ   -->
+
+    <div class="felhasznalo-container">
+        <table class="table table-dark">
+            <thead>
+            <tr class="bg-primary">
+                <th>Felhasználó id</th>
+                <th>Név</th>
+                <th>Email</th>
+                <th>Telefonszám</th>
+                <th>Törlés</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="felh : ${Felhasznalok}">
+                    <td th:text="${felh.felhaszn_id}"></td>
+                    <td th:text="${felh.nev}"></td>
+                    <td th:text="${felh.e_mail}"></td>
+                    <td th:text="${felh.telefonszam}"></td>
+                    <td>
+                        <form th:action="@{/felhasznalo_torles/{felhaszn_id}(felhaszn_id=${felh.felhaszn_id})}"
+                              method="POST">
+                            <button type="submit" class="reserve-button btn btn-danger">Törlés</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TODO: FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ FELHASZNÁLÓ   -->
+
+
+
+
+
+
+    <!-- TODO: BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ   -->
+    <div class="biztosito-container">
+        <h3>Biztosító hozzáadása</h3>
+        <form method="POST" th:action="@{/biztosito_hozzaadas}">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="nev1">Név</label>
+                        <input class="form-control" id="nev1" name="nev1" placeholder="Név" th:if="${Biztosito == null}"
+                               type="text">
+                        <input class="form-control" id="nev11" name="nev1" placeholder="Név"
+                               th:if="${Biztosito != null}" th:value="${Biztosito.nev}" type="text">
+                        <input class="form-control" hidden name="biztosito_kod" placeholder="Név"
+                               th:if="${Biztosito != null}" th:value="${Biztosito.biztosito_kod}" type="text">
+                        <input class="form-control" hidden name="biztosito_kod" placeholder="Név" th:if="${Biztosito == null}"
+                               type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="leiras">Leírás</label>
+                        <input class="form-control" id="leiras" name="leiras" placeholder="Leírás" th:if="${Biztosito == null}"
+                               type="text">
+                        <input class="form-control" id="leiras2" name="leiras"
+                               placeholder="Leírás" th:if="${Biztosito != null}" th:value="${Biztosito.leiras}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <button class="reserve-button btn btn-primary" th:if="${Biztosito == null}" type="submit">
+                            Biztosító Hozzáadása
+                        </button>
+                        <button class="reserve-button btn btn-primary" th:if="${Biztosito != null}" type="submit">
+                            Biztosító szerkesztés
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-dark">
+            <thead>
+            <tr class="bg-primary">
+                <th>Biztosító Kódja</th>
+                <th>Név</th>
+                <th>Leírás</th>
+                <th>Szerkesztés</th>
+                <th>Törlés</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="biztosito : ${Biztositok}">
+                <td th:text="${biztosito.biztosito_kod}"></td>
+                <td th:text="${biztosito.nev}"></td>
+                <td th:text="${biztosito.leiras}"></td>
+                <td>
+                    <form method="POST"
+                          th:action="@{/biztosito_szerkesztes/{biztosito_kod}(biztosito_kod=${biztosito.biztosito_kod})}">
+                        <button class="reserve-button btn btn-success" type="submit">Szerkesztés</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST"
+                          th:action="@{/biztosito_torles/{biztosito_kod}(biztosito_kod=${biztosito.biztosito_kod})}">
+                        <button class="reserve-button btn btn-danger" type="submit">Törlés</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TODO: BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ   -->
+
+
+
+
+
+    <!-- TODO: BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ   -->
+    <div class="biztosito-csomag-container">
+        <h3>Biztosító csomag hozzáadása</h3>
+        <form method="POST" th:action="@{/biztosito_csomag_hozzaadas}">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="fajtak">Fajták</label>
+                        <input class="form-control" id="fajtak" name="fajtak" placeholder="Fajták" th:if="${Csomag == null}"
+                               type="text">
+                        <input class="form-control" id="fajtak2" name="fajtak" placeholder="Fajták"
+                               th:if="${Csomag != null}" th:value="${Csomag.fajtak}" type="text">
+                        <input class="form-control" hidden name="csomag_id" placeholder="Fajták"
+                               th:if="${Csomag != null}" th:value="${Csomag.csomag_id}" type="text">
+                        <input class="form-control" hidden name="csomag_id" placeholder="Fajták" th:if="${Csomag == null}"
+                               type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="ar2">Ár</label>
+                        <input class="form-control" id="ar2" name="ar2" placeholder="Ár" th:if="${Csomag == null}"
+                               type="text">
+                        <input class="form-control" id="ar222" name="ar2" placeholder="Ár"
+                               th:if="${Csomag != null}" th:value="${Csomag.ar}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="biztkod2">Biztosító kód</label>
+
+                        <input class="form-control" id="biztkod2" name="biztkod2" placeholder="Biztosító kód"
+                               th:if="${Csomag == null}"
+                               type="text">
+
+                        <input class="form-control" id="biztkod22" name="biztkod2"
+                               placeholder="Biztosító kód" th:if="${Csomag != null}" th:value="${Csomag.biztosito_kod}"
+                               type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="form-group">
+                        <button class="reserve-button btn btn-primary" th:if="${Csomag == null}" type="submit">
+                            Biztosítási csomag Hozzáadása
+                        </button>
+                        <button class="reserve-button btn btn-primary" th:if="${Csomag != null}" type="submit">
+                            Biztosítás csomag Szerkesztése
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-dark">
+            <thead>
+            <tr class="bg-primary">
+                <th>Biztosítási csomag kódja</th>
+                <th>Fajták</th>
+                <th>Ár</th>
+                <th>Biztosító kódja</th>
+                <th>Szerkesztés</th>
+                <th>Törlés</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="csomag : ${Csomagok}">
+                <td th:text="${csomag.csomag_id}"></td>
+                <td th:text="${csomag.fajtak}"></td>
+                <td th:text="${csomag.ar}"></td>
+                <td th:text="${csomag.biztosito_kod}"></td>
+                <td>
+                    <form method="POST"
+                          th:action="@{/csomag_szerkesztes/{csomag_id}(csomag_id=${csomag.csomag_id})}">
+                        <button class="reserve-button btn btn-success" type="submit">Szerkesztés</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST"
+                          th:action="@{/csomag_torles/{csomag_id}(csomag_id=${csomag.csomag_id})}">
+                        <button class="reserve-button btn btn-danger" type="submit">Törlés</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TODO: BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ BIZTOSÍTÓ   -->
+
+
+
+
+
+
+    <!-- TODO: ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT   -->
+    <div class="arajanlat-container">
+        <h3>Árajánlat hozzáadása</h3>
+        <form th:action="@{/arajanlat_hozzaadas}" method="POST">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="jaratszam222">Járatszám</label>
+
+                        <input th:if="${Arajanlat != null}" th:value="${Arajanlat.jaratszam}" type="text"
+                               class="form-control" id="jaratszam222" name="jaratszam2" placeholder="Járatszám">
+
+                        <input th:if="${Arajanlat == null}" type="text" class="form-control" id="jaratszam22"
+                               name="jaratszam2" placeholder="Járatszám">
+
+                        <input hidden th:if="${Arajanlat != null}" th:value="${Arajanlat.arajanlat_id}" type="text"
+                               class="form-control" name="arajanlat_id" placeholder="Fajták">
+
+                        <input hidden th:if="${Arajanlat == null}" type="text" class="form-control" name="arajanlat_id"
+                               placeholder="Fajták">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="ar3">Ár</label>
+
+                        <input th:if="${Arajanlat != null}" th:value="${Arajanlat.ar}" type="text"
+                               class="form-control" id="ar3" name="ar3" placeholder="Ár">
+
+                        <input th:if="${Arajanlat == null}" type="text" class="form-control" id="ar33" name="ar3"
+                               placeholder="Ár">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="kedvezm">Kedvezmény</label>
+
+                        <input th:if="${Arajanlat != null}" th:value="${Arajanlat.kedvezmeny}" type="text"
+                               class="form-control" id="kedvezm" name="kedvezm" placeholder="Kedvezmény">
+
+                        <input th:if="${Arajanlat == null}" type="text" class="form-control" id="kedvezm2"
+                               name="kedvezm" placeholder="Kedvezmény">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="form-group">
+                        <button th:if="${Arajanlat != null}" type="submit" class="reserve-button btn btn-primary">
+                            Árajánlat szerkesztése
+                        </button>
+                        <button th:if="${Arajanlat == null}" type="submit" class="reserve-button btn btn-primary">
+                            Árajánlat Hozzáadása
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-dark">
+            <thead>
+            <tr class="bg-primary">
+                <th>Árajánlat kódja</th>
+                <th>Járatszám</th>
+                <th>Ár</th>
+                <th>Kedvezmény</th>
+                <th>Szerkesztés</th>
+                <th>Törlés</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="arajanlat : ${Arajanlatok}">
+                <td th:text="${arajanlat.arajanlat_id}"></td>
+                <td th:text="${arajanlat.jaratszam}"></td>
+                <td th:text="${arajanlat.ar}"></td>
+                <td th:text="${arajanlat.kedvezmeny}"></td>
+                <td>
+                    <form th:action="@{/arajanlat_szerkesztes/{arajanlat_id}(arajanlat_id=${arajanlat.arajanlat_id})}" method="POST">
+                        <button type="submit" class="reserve-button btn btn-success" >Szerkesztés</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/arajanlat_torles/{arajanlat_id}(arajanlat_id=${arajanlat.arajanlat_id})}" method="POST">
+                        <button type="submit" class="reserve-button btn btn-danger" >Törlés</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TODO: ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT ÁRAJÁNLAT   -->
+
+
+
+
+
+</main>
+<footer>
+    <nav>
+        <ul>
+            <li><a href="#">Felhasználási feltételek</a></li>
+            <li><a href="#">Adatkezelési tájékoztató</a></li>
+            <li><a href="#">Rólunk</a></li>
+        </ul>
+    </nav>
+    <p>&copy; 2023 repjegyek.store | Minden jog fenntartva.</p>
+</footer>
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/02cb21146d.js"></script>
+<script src="/javascript/jquery.js"></script>
+<script src="/javascript/admin.js"></script>
+</body>
+</html>

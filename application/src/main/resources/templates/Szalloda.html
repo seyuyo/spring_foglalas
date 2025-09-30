@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Szállodák</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/aside.css">
+    <link rel="stylesheet" href="/css/szalloda.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+    <!-- Table Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-khIpoy0tX9M61xFNtuYrOBdM0bymud0/uvjbj94Dbnw/5D/DBExhcQ8nIS5k5S5P5UXn47+JZ8xwZzD4egE4w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Font Awesome for hotels -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+    <!-- js for hotels -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="/"><h1>repjegyek.store</h1></a>
+    </div>
+    <nav class="unique-nav-bar">
+        <ul>
+            <li><a href="/">Kezdőoldal</a></li>
+            <li><a href="/repjegy">Repülőjegyek</a></li>
+            <li><a href="/szalloda">Szállások</a></li>
+            <li><a href="/biztositas">Biztosítások</a></li>
+            <li><a href="/menetrend">Menetrendek</a></li>
+            <li th:if="${Felhasznalo != null}">
+                <a href="/logout">Kijelentkezés</a>
+            </li>
+            <li><a class="login-icon" href="/login">
+                <i class="fa-solid fa-user login-icon"></i>
+            </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <!-- foglaláshoz bejelentkezés szükséges -->
+    <div th:if="${message}">
+        <div class="alert alert-danger" role="alert">
+            <span th:text="${message}"></span>
+            <a href="/login"><button class="btn btn-link">Bejelentkezés</button></a>
+        </div>
+    </div>
+    <div class="popular-hotels">
+        <h2 class="text-center">Legnépszerűbb szállodáink</h2>
+        <table class="table table-info">
+            <thead>
+            <tr>
+                <th class="bg-dark">Szálloda</th>
+                <th class="bg-dark">Foglalások száma</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="szall : ${Nepszeru_szallodak}">
+                <td class="bg-primary" th:text="${szall.szalloda_nev}"></td>
+                <td class="bg-gradient" th:text="${szall.foglalasok_szama}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <h2 class="text-center">Exkluzív helyek</h2>
+        <table class="table table-info">
+            <thead>
+            <tr>
+                <th class="bg-dark">Szálloda</th>
+                <th class="bg-dark">Város</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="szall : ${Dragaszallodak}">
+                <td class="bg-primary" th:text="${szall.nev}"></td>
+                <td class="bg-gradient" th:text="${szall.varos}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="container d-flex justify-content-center">
+        <div class="row">
+            <div class="col-md-4" th:each="szobak : ${Szallodak}"
+                 th:with="kep=${kepekListaja.get(T(java.lang.Math).abs(T(java.lang.Math).random() * kepekListaja.size()) % kepekListaja.size().intValue())}">
+                <div class="card">
+                    <div>
+                        <img th:src="@{/img/hotels/{kep}(kep=${kep})}" class="img-responsive image" height="250px"
+                             width="100%">
+
+                    </div>
+                    <p class="rating" th:text="${#numbers.formatDecimal(T(java.lang.Math).random() * (10 - 7) + 7, 1, 1)}"></p>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${szobak.nev}"></h5>
+                        <p class="card-text" th:text="${szobak.cim} + ', ' + ${szobak.varos}">
+                            <i class="fa fa-map-marker marker"></i>
+                        </p>
+                        <p class="card-text">
+                            <i class="fa fa-star star-rating"></i>
+                            <i class="fa fa-star star-rating"></i>
+                            <i class="fa fa-star star-rating"></i>
+                            <i class="fa fa-star star-rating"></i>
+                        </p>
+                        <p class="card-text" th:text="'Férőhelyek száma: ' + ${szobak.szoba_ferohelyek_szama}"></p>
+                        <p class="card-text" th:text="${szobak.ar} + ' HUF/FŐ/ÉJ'"></p>
+                        <form th:action="@{/szallodaFoglalas/{szid}(szid=${szobak.szalloda_id})}" method="POST">
+                            <button class="btn btn-primary float-right reserve-btn" id="reserveButton">Foglalás</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<aside>
+    <div class="contact">
+        <h3>Kapcsolat</h3>
+        <ul>
+            <li><i class="fas fa-phone"></i> +1-123-456-7890</li>
+            <li><i class="fas fa-envelope"></i> info@jegyfoglalas.hu</li>
+            <li><i class="fas fa-map-marker-alt"></i>1055 Szent Gellért tér 82., Budapest</li>
+        </ul>
+    </div>
+    <div class="payment-options">
+        <h3>Fizetési lehetőségek</h3>
+        <img class="mastercard" src="/pic/pay/mastercard.svg" alt="Mastercard">
+        <img class="visa" src="/pic/pay/visa.svg" alt="Visa">
+        <img class="paypal" src="/pic/pay/paypal.svg" alt="PayPal">
+    </div>
+    <div class="social">
+        <h3>Kövessen minket!</h3>
+        <ul>
+            <li>
+                <a href="#" class="facebook">
+                    <i class="fa-brands fa-facebook fa-2xl"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="twitter">
+                    <i class="fa-brands fa-twitter fa-2xl"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="linkdIn">
+                    <i class="fa-brands fa-linkedin fa-2xl"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</aside>
+<footer>
+    <nav>
+        <ul>
+            <li><a href="#">Felhasználási feltételek</a></li>
+            <li><a href="#">Adatkezelési tájékoztató</a></li>
+            <li><a href="#">Rólunk</a></li>
+        </ul>
+    </nav>
+    <p>&copy; 2023 repjegyek.store | Minden jog fenntartva.</p>
+</footer>
+
+<!-- Social media ikonok -->
+<script src="https://kit.fontawesome.com/02cb21146d.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+

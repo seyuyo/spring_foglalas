@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Hitelesítés</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- NAVBAR CSS -->
+  <link rel="stylesheet" href="/css/navbar.css">
+  <!-- FOOTER CSS -->
+  <link rel="stylesheet" href="/css/footer.css">
+  <!-- ASIDE CSS -->
+  <link rel="stylesheet" href="/css/aside.css">
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="/css/hitelesites.css">
+
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+</head>
+
+<body>
+<header>
+  <div class="logo">
+    <a href="/"><h1>repjegyek.store</h1></a>
+  </div>
+  <nav class="unique-nav-bar">
+    <ul>
+      <li><a href="/">Kezdőoldal</a></li>
+      <li><a href="/repjegy">Repülőjegyek</a></li>
+      <li><a href="/szalloda">Szállások</a></li>
+      <li><a href="/biztositas">Biztosítások</a></li>
+      <li><a href="/menetrend">Menetrendek</a></li>
+      <li><a class="login-icon" href="/login">
+        <i class="fa-solid fa-user"></i>
+      </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class="container">
+    <div class="form-container sign-up-container">
+      <!--TODO: user regisztráció -->
+      <form method="POST" th:action="@{/registerUser}">
+        <h1>Regisztráció</h1>
+        <input type="text" placeholder="Név" id="name" name="name" required/>
+        <input type="email" placeholder="Email" id="email" name="email" required/>
+        <input type="password" placeholder="Jelszó" id="password" name="password" required/>
+        <input type="password" placeholder="Jelszó" id="password2" name="password2" required/>
+        <input type="tel" placeholder="Telefonszám" name="mobile-phone" required>
+        <button>Regisztráció</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form th:action="@{/loginUser}" method="post">
+        <h1>Bejelentkezés</h1>
+        <input name="email" type="email" placeholder="Email"/>
+        <input name="password" type="password" placeholder="Jelszó"/>
+        <a href="#">Elfelejtette a jelszavát?</a>
+        <button>Bejelentkezés</button>
+        <a href="/" class="google-login">
+          <i class="fa-brands fa-google fa-bounce fa-2xl" style="color: #1f3151;"></i>
+        </a>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Üdvözöljük!</h1>
+          <p>Ha már van fiókja, akkor jelentkezzen be.</p>
+          <button class="ghost" id="signInButton">Bejelentkezés</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Üdvözöljük!</h1>
+          <p>Ha még nincs fiókja, akkor regisztráljon.</p>
+          <button class="ghost" id="signUpButton">Regisztráció</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<aside>
+  <div class="contact">
+    <h3>Kapcsolat</h3>
+    <ul>
+      <li><i class="fas fa-phone"></i> +1-123-456-7890</li>
+      <li><i class="fas fa-envelope"></i> info@jegyfoglalas.hu</li>
+      <li><i class="fas fa-map-marker-alt"></i>1055 Szent Gellért tér 82., Budapest</li>
+    </ul>
+  </div>
+  <div class="payment-options">
+    <h3>Fizetési lehetőségek</h3>
+    <img class="mastercard" src="/pic/pay/mastercard.svg" alt="Mastercard">
+    <img class="visa" src="/pic/pay/visa.svg" alt="Visa">
+    <img class="paypal" src="/pic/pay/paypal.svg" alt="PayPal">
+  </div>
+  <div class="social">
+    <h3>Kövessen minket!</h3>
+    <ul>
+      <li>
+        <a href="#" class="facebook">
+          <i class="fa-brands fa-facebook fa-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="twitter">
+          <i class="fa-brands fa-twitter fa-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="linkdIn">
+          <i class="fa-brands fa-linkedin fa-2xl"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</aside>
+<footer>
+  <nav>
+    <ul>
+      <li><a href="#">Felhasználási feltételek</a></li>
+      <li><a href="#">Adatkezelési tájékoztató</a></li>
+      <li><a href="#">Rólunk</a></li>
+    </ul>
+  </nav>
+  <p>&copy; 2023 repjegyek.store | Minden jog fenntartva.</p>
+</footer>
+
+<script src="https://kit.fontawesome.com/02cb21146d.js" crossorigin="anonymous"></script>
+<script src="/javascript/jquery.js"></script>
+<script src="/javascript/script.js"></script>
+</body>
+</html>

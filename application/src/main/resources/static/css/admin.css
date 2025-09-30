@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: currentColor;
+}
+
+main {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: url("https://wallpapercave.com/wp/wp2508260.jpg") no-repeat center center fixed;
+}
+
+table {
+    margin: 0 auto;
+    text-align: center;
+}
+
+th, td {
+    vertical-align: middle!important;
+    text-align: center;
+}
+
+.szalloda-container, .legitarsasag-container, .felhasznalo-container, .biztosito-container,
+    .biztosito-csomag-container, .arajanlat-container, .active-users-container{
+    display: none;
+}
+
+.button-container {
+    margin: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-info {
+    margin: 0 20px 0 20px;
+}
+.btn-primary {
+    margin: 35px!important;
+}
+
+h3 {
+    margin: 20px 0 20px 0;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+
+label {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.active-title {
+    color: #ffffff!important;
+    background-color: cornflowerblue!important;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 20px auto;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

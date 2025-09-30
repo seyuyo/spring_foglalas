@@ -1,0 +1,134 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;!important;
+    background-color: #0f0f0f!important;
+}
+
+main {
+    max-width: 80%;
+    margin: 20px auto 20px auto;
+    padding: 20px;
+    background-color: lemonchiffon;
+    border-radius: 20px;
+}
+
+.container {
+    margin-top: 100px
+}
+
+.rating {
+    position: relative;
+    display: flex;
+    width: 2.875rem;
+    height: 2.875rem;
+    margin-top: -1.75rem;
+    margin-left: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    border: .25rem solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    background-color: rebeccapurple
+}
+
+.image {
+    max-width: 100%
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: burlywood!important;
+    margin: 0 0 20px 0;
+    border-radius: 20px !important;
+    background-clip: border-box;
+    border: none;
+}
+
+.card-title {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 500;
+    color: #653399
+}
+
+.card-text {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.marker {
+    color: red
+}
+
+.star-rating {
+    color: #f7b944
+}
+
+.row{
+    display:none;!important;
+}
+
+.col-md-4 {
+    width: 100%;!important;
+}
+
+.alert-danger{
+    text-align: center;
+}
+
+.popular-hotels {
+    margin: 50px auto;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+}
+
+th {
+    color: #FFFFFF!important;
+    vertical-align: bottom!important;
+    text-align: center!important;
+}
+
+td:nth-child(1) {
+    color: #FFFFFF!important;
+    font-weight: bold;
+    vertical-align: bottom!important;
+    text-align: center!important;
+}
+td:nth-child(2) {
+    color: #333!important;
+    vertical-align: bottom!important;
+    text-align: center!important;
+}
+
+i {
+    color: #333!important;
+}
+
+aside {
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+img {
+    border-radius: 20px;
+}
+
+.login-icon {
+    color: #FFFFFF!important;
+}
